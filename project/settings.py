@@ -32,12 +32,29 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+
+    'wagtail.contrib.forms',
+    'wagtail.contrib.redirects',
+    'wagtail.embeds',
+    'wagtail.sites',
+    'wagtail.users',
+    'wagtail.snippets',
+    'wagtail.documents',
+    'wagtail.images',
+    'wagtail.search',
+    'wagtail.admin',
+    'wagtail',
+
+    'taggit',
+    'modelcluster',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'blog',
 ]
 
@@ -49,6 +66,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -82,8 +101,12 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD':'49860060',
+        'HOST':'',
+        'PORT':''
     }
 }
 
@@ -122,6 +145,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'base_static'
@@ -141,3 +170,29 @@ WAGTAILADMIN_BASE_URL = 'http://example.com'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+ADMINS = [
+    ('marcos', 'marcosfgui2006@gmail.com')
+]
+MANAGERS = ADMINS
+
+EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+
+EMAIL_SUBJECT_PREFIX = '[Wagtail]'
+
+INTERNAL_IPS = ('127.0.0.1', '10.0.2.2')
+
+LOGGING = {
+
+}
+
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.search.backends.elasticsearch8',
+        'INDEX':'blog'
+    }
+}
+
+WAGTAILADMIN_NOTIFICATION_USE_HTML = True
+
+WAGTAILDOCS_EXTENSIONS = ['csv', 'docx', 'key', 'odt', 'pdf', 'pptx', 'rtf', 'txt', 'xlsx', 'zip']
