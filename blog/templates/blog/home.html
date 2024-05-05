@@ -1,5 +1,12 @@
 {% extends "global/base.html" %}
+{% load wagtailcore_tags %}
 
 {% block content %}
-    <h1>Home</h1>
+    <a href="#">search</a>
+    <h1>Blogs</h1>
+
+    {% for p in page.get_children.live %}
+        <a href="{% pageurl p %}">{{p.title}}</a>
+    {% endfor %}
+
 {% endblock content %}
