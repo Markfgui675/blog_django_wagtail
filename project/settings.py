@@ -186,12 +186,12 @@ LOGGING = {
 
 }
 
-WAGTAILSEARCH_BACKENDS = {
-    'default': {
-        'BACKEND': 'wagtail.search.backends.elasticsearch8',
-        'INDEX':'blog'
-    }
-}
+#WAGTAILSEARCH_BACKENDS = {
+#    'default': {
+#       'BACKEND': 'wagtail.search.backends.elasticsearch8',
+#        'INDEX':'blog'
+#    }
+#}
 
 WAGTAILADMIN_NOTIFICATION_USE_HTML = True
 
