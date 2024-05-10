@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-qb!51mlrkg)q#scemqw0#tox7l)xsvcia08*u&e)-cvikvs8mn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -101,12 +101,8 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD':'49860060',
-        'HOST':'',
-        'PORT':''
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -176,15 +172,7 @@ ADMINS = [
 ]
 MANAGERS = ADMINS
 
-EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
-
-EMAIL_SUBJECT_PREFIX = '[Wagtail]'
-
 INTERNAL_IPS = ('127.0.0.1', '10.0.2.2')
-
-LOGGING = {
-
-}
 
 #WAGTAILSEARCH_BACKENDS = {
 #    'default': {
