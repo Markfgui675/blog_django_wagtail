@@ -17,12 +17,17 @@
         <nav class="s-header__nav">
 
             <ul class="s-header__menu-links">
-                <li><a href="{% url "about" %}">About</a></li>
-                <li class="current"><a href="{% url "home-index" %}">Journal</a></li>
+                {% if about %}
+                    <li class="current"><a href="{% url "about" %}">About</a></li>
+                    <li><a href="{% url "home-index" %}">Journal</a></li>
+                {% else %}
+                    <li><a href="{% url "about" %}">About</a></li>
+                    <li class="current"><a href="{% url "home-index" %}">Journal</a></li>
+                {% endif %}
             </ul> <!-- s-header__menu-links -->
 
             <div class="s-header__contact">
-                <a href="#" class="btn btn--primary s-header__contact-btn">Entrar</a>
+                <a href="{% url "login" %}" class="btn btn--primary s-header__contact-btn">Entrar</a>
             </div> <!-- s-header__contact -->
 
         </nav> <!-- end s-header__nav -->

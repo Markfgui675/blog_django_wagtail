@@ -1,0 +1,18 @@
+<form action="{{form_action}}" id="mc-form" class="mc-form" method="POST", enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form %}
+        {{field}}
+        {{field.errors}}
+    {% endfor %}
+    <button type="submit" class="btn btn--primary btn--small u-fullwidth">
+        Entrar
+    </button>
+    <!-- <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_cdb7b577e41181934ed6a6a44_9a91cfe7b3" tabindex="-1" value=""></div> -->
+    <div class="mc-status">
+
+        {% if user.is_authenticated %}
+
+        {% endif %}
+
+    </div>
+</form>

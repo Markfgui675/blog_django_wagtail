@@ -1,0 +1,30 @@
+{% extends "global/base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+    
+<section id="content" class="s-content">
+
+    <section class="s-pageheader pageheader">
+        <div class="row">
+            <div class="column xl-12">
+                <h1 class="page-title">
+                    <span class="page-title__small-type text-pretitle">About</span>
+                    Hi, I'm Monica
+                </h1>
+                
+            </div>
+        </div>
+    </section> <!-- end pageheader --> 
+
+    <section class="s-pagecontent pagecontent pagecontent-login">
+
+        <div class="subscribe-form login-form">
+            {% include "global/partials/form.html" %}
+        </div>
+
+    </section> <!-- end s-testimonials -->
+
+</section> <!-- s-content-->
+
+{% endblock content %}
