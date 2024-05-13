@@ -9,7 +9,7 @@ class LoginForm(forms.Form):
             }
         )
     )
-    pasword = forms.CharField(
+    password = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
                 'placeholder':'Digite a senha'

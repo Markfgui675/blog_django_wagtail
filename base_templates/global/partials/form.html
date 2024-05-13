@@ -1,6 +1,7 @@
-<form action="{{form_action}}" id="mc-form" class="mc-form" method="POST", enctype="multipart/form-data">
+<form action="{{ form_action }}" class="mc-form" method="POST", enctype="multipart/form-data">
     {% csrf_token %}
     {% for field in form %}
+        <label for="{{ field.id_for_label }}">{{ field.name }}</label>
         {{field}}
         {{field.errors}}
     {% endfor %}

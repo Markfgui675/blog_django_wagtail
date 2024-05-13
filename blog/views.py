@@ -1,9 +1,11 @@
 from django.http import Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from blog.models import Home, Blog
 from blog.forms.login import LoginForm
+from blog.forms.create_user import RegisterForm
 from django.contrib import messages
 
 # Create your views here.
@@ -12,11 +14,15 @@ def index(request):
     page = Home.objects.all().order_by('-id').first()
     children = Blog.objects.live()
 
-    print(children)
+    logado = False
+    user = request.user
+    if user.is_authenticated:
+        logado = True
 
     context = {
         'page':page,
-        'children':children
+        'children':children,
+        'logado':logado
     }
     return render(request, 'blog/home.html', context=context)
 
@@ -44,6 +50,43 @@ def about(request):
     return render(
         request, 'blog/about.html', context=context
     )
+
+
+def register_view(request):
+
+    register_form_data = request.session.get('register_form_data', None)
+    form = RegisterForm(register_form_data)
+
+    context = {
+        'form':form,
+        'form_action':reverse('register_create')
+    }
+
+    return render(request, 'blog/register.html', context=context)
+
+
+def register_create(request):
+
+    if not request.POST:
+        raise Http404()
+
+    POST = request.POST
+    request.session['register_form_data'] = POST
+    form = RegisterForm(POST)
+
+    if form.is_valid():
+        messages.success(request, 'login')
+        user = form.save(commit=False)
+        user.set_password(user.password)
+        user.save()
+        authenticated_user = authenticate(
+            username=form.cleaned_data.get('username', ''),
+            password=form.cleaned_data.get('password', '')
+        )
+        login(request, authenticated_user)
+        del(request.session['register_form_data'])
+    
+    return redirect(reverse('home-index'))
 
 
 def login_view(request):
@@ -76,10 +119,23 @@ def login_create(request):
         if authenticated_user is not None:
             messages.success(request, 'Você está logado')
             login(request, authenticated_user)
+            return redirect(reverse('home-index'))
         else:
             messages.error(request, 'Credenciais inválidas')
     else:
         messages.error(request, 'Username ou password inválidos')
 
-    return redirect(reverse('home-index'))
+    return redirect(reverse('login'))
 
+
+@login_required(login_url='login', redirect_field_name='next')
+def logout_view(request):
+
+    if not request.POST:
+        return redirect(reverse('login'))
+    
+    if request.POST.get('username') != request.user.username:
+        return redirect(reverse('login'))
+    
+    logout(request)
+    return redirect(reverse('home-index'))

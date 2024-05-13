@@ -27,7 +27,21 @@
             </ul> <!-- s-header__menu-links -->
 
             <div class="s-header__contact">
-                <a href="{% url "login" %}" class="btn btn--primary s-header__contact-btn">Entrar</a>
+                <div class="box">
+                    {% if logado %}
+                        <a href="{% url "wagtailadmin_home" %}" target="_blank" class="btn btn--primary     s-header__contact-btn">Acessar Admin</a>
+
+                        <form action="{% url "logout" %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="username" value="{{request.user.username}}">
+                            <button type="submit">
+                                Sair
+                            </button>
+                        </form>
+                    {% else %}
+                        <a href="{% url "login" %}" class="btn btn--primary     s-header__contact-btn">Entrar</a>
+                    {% endif %}
+                </div>
             </div> <!-- s-header__contact -->
 
         </nav> <!-- end s-header__nav -->

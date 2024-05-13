@@ -3368,6 +3368,25 @@ td:last-child {
 	transform: rotate(225deg);
 }
 
+.s-header__contact .box{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+.s-header__contact .box form{
+	margin: 0;
+}
+.s-header__contact .box form button{
+	background-color: transparent;
+	border: none;
+	margin: 0;
+	font-family: var(--font-1);
+	font-weight: 400;
+	font-size: 1.6rem;
+	color: var(--color-1);
+}
+
 /* ------------------------------------------------------------------- 
  * responsive:
  * site-header
@@ -3438,6 +3457,13 @@ td:last-child {
 
 	.s-header__contact {
 		margin-top: var(--vspace-1_5);
+	}
+
+	.s-header__contact .box{
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
 	}
 
 	.s-header__contact .btn {
