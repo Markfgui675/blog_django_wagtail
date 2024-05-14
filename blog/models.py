@@ -14,12 +14,11 @@ class Blog(Page):
     )
     subtitle = models.TextField(max_length=500, blank=True)
     body = RichTextField(blank=False)
-    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     content_panels = [
         FieldPanel('title'),
         FieldPanel('image'),
         FieldPanel('subtitle'),
-        FieldPanel('body'),
-        FieldPanel('author')
+        FieldPanel('body')
     ]

@@ -1,4 +1,14 @@
 <form action="{{ form_action }}" class="mc-form" method="POST", enctype="multipart/form-data">
+
+    {% if form.errors %}
+        <div class="form-group">
+            <div class="message message-error">
+                O formulário apresenta erros, o conserte antes de enviá-lo.
+            </div>
+        </div>
+        <br>
+    {% endif %}
+
     {% csrf_token %}
     {% for field in form %}
         <label for="{{ field.id_for_label }}">{{ field.name }}</label>

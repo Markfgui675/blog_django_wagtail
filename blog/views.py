@@ -7,6 +7,8 @@ from blog.models import Home, Blog
 from blog.forms.login import LoginForm
 from blog.forms.create_user import RegisterForm
 from django.contrib import messages
+from django.contrib.auth.models import Group
+from blog import groups
 
 # Create your views here.
 def index(request):
@@ -14,15 +16,9 @@ def index(request):
     page = Home.objects.all().order_by('-id').first()
     children = Blog.objects.live()
 
-    logado = False
-    user = request.user
-    if user.is_authenticated:
-        logado = True
-
     context = {
         'page':page,
         'children':children,
-        'logado':logado
     }
     return render(request, 'blog/home.html', context=context)
 
@@ -85,8 +81,10 @@ def register_create(request):
         )
         login(request, authenticated_user)
         del(request.session['register_form_data'])
-    
-    return redirect(reverse('home-index'))
+        groups.addEditorGroup(user)
+        return redirect(reverse('home-index'))
+    else:
+        return redirect(reverse('register'))
 
 
 def login_view(request):

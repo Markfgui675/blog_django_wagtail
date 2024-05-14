@@ -28,7 +28,7 @@
 
             <div class="s-header__contact">
                 <div class="box">
-                    {% if logado %}
+                    {% if request.user.is_authenticated %}
                         <a href="{% url "wagtailadmin_home" %}" target="_blank" class="btn btn--primary     s-header__contact-btn">Acessar Admin</a>
 
                         <form action="{% url "logout" %}" method="POST">

@@ -2018,7 +2018,7 @@ select {
 	font-size          : var(--text-sm);
 	font-size          : calc(var(--text-size) * 0.8889);
 	line-height        : var(--input-line-height);
-	max-width          : 100%;
+	width          : 100%;
 	background-color   : var(--color-gray-3);
 	border             : 1px solid transparent;
 	transition         : all 0.3s ease-in-out;
