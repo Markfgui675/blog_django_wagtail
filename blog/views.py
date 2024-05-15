@@ -6,10 +6,9 @@ from django.contrib.auth.decorators import login_required
 from blog.models import Home, Blog
 from blog.forms.login import LoginForm
 from blog.forms.create_user import RegisterForm
-from django.contrib import messages
-from django.contrib.auth.models import Group
 from blog import groups
 from utils.pagination import make_pagination
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -37,6 +36,7 @@ def blog(request, slug):
     similar = True if len(similar_posts) > 1 else False
 
     context = {
+        'head_title': f'- {page.title}',
         'page':page,
         'single': True,
         'similar':similar,
@@ -95,6 +95,7 @@ def register_create(request):
         groups.addEditorGroup(user)
         return redirect(reverse('home-index'))
     else:
+        messages.error(request, 'Não foi possível criar a conta.')
         return redirect(reverse('register'))
 
 
