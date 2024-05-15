@@ -1,0 +1,36 @@
+<!-- pagination -->
+{% if children.has_other_pages %}
+    <div class="row navigation pagination">
+        <div class="column xl-12">
+            <nav class="pgn">
+                <ul>
+
+
+                    {% if pages.first_page_out_of_range %}
+                        <li><a class="pgn__num" href="?page=1{{additional_url_query}}">1</a></li>
+                        <span>...</span>
+                    {% endif %}
+
+                    {% for page in pages.pagination %}
+                        {% if pages.current_page == page %}
+                            <li><span class="pgn__num current">
+                                <a href="?page={{page}}{{additional_url_query}}">{{page}}</a>
+                            </span></li>
+                        {% else %}
+                            <li><span class="pgn__num">
+                                <a href="?page={{page}}{{additional_url_query}}">{{page}}</a>
+                            </span></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if pages.last_page_out_of_range %}
+                        <span>...</span>
+                        <li><a class="pgn__num" href="?page={{pages.total_page}}{{additional_url_query}}">{{pages.total_page}}</a></li>
+                    {% endif %}
+
+
+                </ul>
+            </nav>
+        </div> <!-- end column -->
+    </div> <!-- end pagination -->
+{% endif %}

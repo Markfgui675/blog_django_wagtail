@@ -9,16 +9,23 @@ from blog.forms.create_user import RegisterForm
 from django.contrib import messages
 from django.contrib.auth.models import Group
 from blog import groups
+from utils.pagination import make_pagination
 
 # Create your views here.
 def index(request):
 
     page = Home.objects.all().order_by('-id').first()
     children = Blog.objects.order_by('-id').live()
+    pagination = make_pagination(
+        request=request,
+        object_list=children,
+        per_page=12
+    )
 
     context = {
         'page':page,
-        'children':children,
+        'pages':pagination['pagination_range'],
+        'children':pagination['page_obj']
     }
     return render(request, 'blog/home.html', context=context)
 
