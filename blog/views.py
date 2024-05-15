@@ -14,7 +14,7 @@ from blog import groups
 def index(request):
 
     page = Home.objects.all().order_by('-id').first()
-    children = Blog.objects.live()
+    children = Blog.objects.order_by('-id').live()
 
     context = {
         'page':page,
@@ -26,10 +26,14 @@ def index(request):
 def blog(request, slug):
 
     page = Blog.objects.filter(slug=slug).first()
+    similar_posts = Blog.objects.filter(category=page.category)[:6]
+    similar = True if len(similar_posts) > 1 else False
 
     context = {
         'page':page,
-        'single': True
+        'single': True,
+        'similar':similar,
+        'similar_posts':similar_posts
     }
 
     return render(

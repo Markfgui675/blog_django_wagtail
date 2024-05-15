@@ -3,7 +3,7 @@
 <div class="grid-list-items__item blog-card">
     <div class="blog-card__header">
         <div class="blog-card__cat-links">
-            <a href="blog.html">Sponsored</a>
+            <a href="blog.html">{{p.category}}</a>
         </div>
         <h3 class="blog-card__title"><a href={% url 'blog-page' p.slug%}>{{p.title}}</a></h3>
     </div>
