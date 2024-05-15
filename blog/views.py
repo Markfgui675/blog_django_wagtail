@@ -5,10 +5,12 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from blog.models import Home, Blog
 from blog.forms.login import LoginForm
+from blog.forms.email import EmailForm
 from blog.forms.create_user import RegisterForm
 from blog import groups
 from utils.pagination import make_pagination
 from django.contrib import messages
+from django.core.mail import send_mail
 
 # Create your views here.
 def index(request):
@@ -20,14 +22,33 @@ def index(request):
         object_list=children,
         per_page=12
     )
+    form = EmailForm()
 
     context = {
         'page':page,
+        'form':form,
+        'form_action':reverse('email-send'),
         'pages':pagination['pagination_range'],
         'children':pagination['page_obj']
     }
     return render(request, 'blog/home.html', context=context)
 
+
+def email_send(request):
+
+    if not request.POST:
+        raise Http404()
+    
+    form = EmailForm(request.POST)
+
+    if form.is_valid():
+        form.save()
+        send_mail('Assunto', 'Esse é o email que estou te enviando', 'caio@pythonando.com.br', ['caio.h.sampaio@outlook.com'])
+        messages.success(request, 'E-mail enviado com sucesso!')
+    else:
+        messages.error(request, 'Não foi possível enviar o e-mail')
+    
+    return redirect(reverse('home-index'))
 
 def blog(request, slug):
 

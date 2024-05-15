@@ -34,3 +34,6 @@ class Blog(Page):
         FieldPanel('subtitle'),
         FieldPanel('body')
     ]
+
+class Email(models.Model):
+    email = models.EmailField('E-mail')
