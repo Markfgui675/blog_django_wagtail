@@ -11,12 +11,12 @@
 
     {% csrf_token %}
     {% for field in form %}
-        <label for="{{ field.id_for_label }}">{{ field.name }}</label>
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
         {{field}}
         {{field.errors}}
     {% endfor %}
     <button type="submit" class="btn btn--primary btn--small u-fullwidth">
-        Entrar
+        {{text_button}}
     </button>
     <!-- <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_cdb7b577e41181934ed6a6a44_9a91cfe7b3" tabindex="-1" value=""></div> -->
     <div class="mc-status">

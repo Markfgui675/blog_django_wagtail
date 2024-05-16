@@ -25,8 +25,10 @@ def index(request):
     form = EmailForm()
 
     context = {
+        'head_title':'Home',
         'page':page,
         'form':form,
+        'text_button':'Enviar',
         'form_action':reverse('email-send'),
         'pages':pagination['pagination_range'],
         'children':pagination['page_obj']
@@ -57,7 +59,7 @@ def blog(request, slug):
     similar = True if len(similar_posts) > 1 else False
 
     context = {
-        'head_title': f'- {page.title}',
+        'head_title': f'Home - {page.title}',
         'page':page,
         'single': True,
         'similar':similar,
@@ -87,6 +89,7 @@ def register_view(request):
 
     context = {
         'form':form,
+        'text_button':'Criar conta',
         'form_action':reverse('register_create')
     }
 
@@ -126,6 +129,7 @@ def login_view(request):
 
     context = {
         'form':form,
+        'text_button':'Entrar',
         'form_action':reverse('login_create')
     }
 

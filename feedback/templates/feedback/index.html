@@ -1,0 +1,37 @@
+{% extends "wagtailadmin/base.html" %}
+{% load static %}
+{% block titletag %}Feedbacks{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static "global/css/feedback/index.css" %}">
+{% endblock %}
+
+{% block content %}
+    {% include "wagtailadmin/shared/header.html" with title="Feedbacks" icon="comment" %}
+
+    <div class="nice-padding">
+
+        <div class="filtro">
+            <form method='GET'>
+                {{f.form.as_p}}
+                <input type="submit"/>
+            </form>
+        </div>
+        
+        {% for feedback in f %}
+
+            <div class="box">
+                <a href="{% url "feedback-slug" feedback.id%}">
+                    <h2>{{feedback.titulo}} - <span class="status">{{feedback.status}}</span></h2>
+                </a>
+
+                <a href="#"><h2>{{feedback.data}}</h2></a>
+            </div>
+
+        {% endfor %}
+
+        {% include "global/partials/pagination.html" %}
+
+    </div>
+{% endblock %}

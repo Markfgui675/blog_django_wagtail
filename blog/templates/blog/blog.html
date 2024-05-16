@@ -53,7 +53,9 @@
                             {{page.subtitle}}</p> 
 
     
-                            {{page.body|richtext}}                                                 
+                            {{page.body|richtext}} 
+                            
+                            <a href="{% url "feedback" page.slug%}">Escrever feedback sobre a página</a>
                    
                     </div> <!-- end column-->
                 </div> <!-- end entry__primary -->    

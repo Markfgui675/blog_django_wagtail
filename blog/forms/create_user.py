@@ -7,6 +7,7 @@ class RegisterForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
     first_name = forms.CharField(
+        label='Primeiro nome',
         widget=forms.TextInput(
             attrs={
                 'placeholder':'Primeiro nome'
@@ -15,6 +16,7 @@ class RegisterForm(forms.ModelForm):
     )
 
     last_name = forms.CharField(
+        label='Sobrenome',
         widget=forms.TextInput(
             attrs={
                 'placeholder':'Sobrenome'
@@ -23,6 +25,7 @@ class RegisterForm(forms.ModelForm):
     )
 
     username = forms.CharField(
+        label='Username',
         widget=forms.TextInput(
             attrs={
                 'placeholder':'Username'
@@ -31,6 +34,7 @@ class RegisterForm(forms.ModelForm):
     )
 
     email = forms.CharField(
+        label='E-mail',
         widget=forms.TextInput(
             attrs={
                 'placeholder':'E-mail'
@@ -39,6 +43,7 @@ class RegisterForm(forms.ModelForm):
     )
 
     password = forms.CharField(
+        label='Senha',
         widget=forms.PasswordInput(
             attrs={
                 'placeholder':'Senha'
@@ -47,6 +52,7 @@ class RegisterForm(forms.ModelForm):
     )
 
     password2 = forms.CharField(
+        label='Repita a senha',
         widget=forms.PasswordInput(
             attrs={
                 'placeholder':'Repita a senha'
