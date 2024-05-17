@@ -12,7 +12,7 @@ from feedback.filters import FeedbackFilter
 
 
 def index(request):
-    f = FeedbackFilter(request.GET, queryset=Feedback.objects.all())
+    f = FeedbackFilter(request.GET, queryset=Feedback.objects.all().order_by('-id'))
     pagination = make_pagination(
         request=request,
         object_list=f.qs,

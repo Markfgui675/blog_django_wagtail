@@ -24,6 +24,9 @@
                     <li><a href="{% url "about" %}">About</a></li>
                     <li class="current"><a href="{% url "home-index" %}">Journal</a></li>
                 {% endif %}
+                {% if request.user.is_authenticated %}
+                    <li><a href="{% url "about" %}">Solicitar Nível de Acesso</a></li>
+                {% endif %}
             </ul> <!-- s-header__menu-links -->
 
             <div class="s-header__contact">

@@ -5,10 +5,10 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from blog.models import Home, Blog
 from blog.forms.login import LoginForm
-from blog.forms.email import EmailForm
 from blog.forms.create_user import RegisterForm
 from blog import groups
 from utils.pagination import make_pagination
+from utils.http_error import HttpPostError
 from django.contrib import messages
 from django.core.mail import send_mail
 
@@ -22,35 +22,17 @@ def index(request):
         object_list=children,
         per_page=12
     )
-    form = EmailForm()
 
     context = {
         'head_title':'Home',
         'page':page,
-        'form':form,
         'text_button':'Enviar',
-        'form_action':reverse('email-send'),
         'pages':pagination['pagination_range'],
         'children':pagination['page_obj']
     }
     return render(request, 'blog/home.html', context=context)
 
 
-def email_send(request):
-
-    if not request.POST:
-        raise Http404()
-    
-    form = EmailForm(request.POST)
-
-    if form.is_valid():
-        form.save()
-        send_mail('Assunto', 'Esse é o email que estou te enviando', 'caio@pythonando.com.br', ['caio.h.sampaio@outlook.com'])
-        messages.success(request, 'E-mail enviado com sucesso!')
-    else:
-        messages.error(request, 'Não foi possível enviar o e-mail')
-    
-    return redirect(reverse('home-index'))
 
 def blog(request, slug):
 
@@ -98,8 +80,7 @@ def register_view(request):
 
 def register_create(request):
 
-    if not request.POST:
-        raise Http404()
+    HttpPostError(request)
 
     POST = request.POST
     request.session['register_form_data'] = POST
@@ -140,8 +121,7 @@ def login_view(request):
 
 def login_create(request):
 
-    if not request.POST:
-        raise Http404()
+    HttpPostError(request)
 
     form = LoginForm(request.POST)
 
@@ -161,6 +141,18 @@ def login_create(request):
         messages.error(request, 'Username ou password inválidos')
 
     return redirect(reverse('login'))
+
+
+
+def acesso_view(request):
+    context = {}
+    return render(
+        request, 'blog/acesso.html', context=context
+    )
+
+
+def acesso_solicitacao(request):
+    HttpPostError(request)
 
 
 @login_required(login_url='login', redirect_field_name='next')

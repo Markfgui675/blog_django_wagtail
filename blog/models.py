@@ -35,5 +35,3 @@ class Blog(Page):
         FieldPanel('body')
     ]
 
-class Email(models.Model):
-    email = models.EmailField('E-mail')

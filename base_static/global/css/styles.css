@@ -3503,8 +3503,13 @@ td:last-child {
 	}
 }
 
+.return{
+	width: 90%;
+	margin-bottom: 56px;
+}
 .pagecontent-login{
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
