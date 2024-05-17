@@ -1,0 +1,49 @@
+{% extends "wagtailadmin/base.html" %}
+{% load static %}
+{% block titletag %}Solicitação{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static "global/css/solicitacao/solicitacao_page.css" %}">
+{% endblock %}
+
+{% block content %}
+    {% include "wagtailadmin/shared/header.html" with title="Solicitação" icon="form" %}
+
+    <div class="nice-padding">
+
+        <div class="box">
+            <h1><span class="no-bold">Nível solicitado:</span> {{s.group}}</h1>
+            <h2>{{s.data}}</h2>
+        </div>
+
+        <br>
+
+        <h2><span class="no-bold">Usuário:</span> {{s.user.first_name}}</h2>
+
+        <br>
+
+        <h2>Motivo:</h2>
+        <p>{{s.motivo}}</p>
+
+        <br>
+
+        <div class="box">
+
+            <form action="{{form_action}}" method="POST", enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                    {% if field.label == 'Status' %}
+                        {{field}}
+                    {% endif %}
+                {% endfor %}
+
+                <button class="button_filter" id="button" type="submit">
+                    Confirmar
+                </button>
+            </form>
+
+        </div>
+
+    </div>
+{% endblock %}

@@ -4,7 +4,7 @@ def addGroup(user: User, group: Group):
     user.groups.add(group)
 
 def addModeratorGroup(user: User):
-    user.groups.add(Group.objects.filter(name='Moderators').first())
+    user.groups.add(Group.objects.filter(name='Moderador').first())
 
 def addEditorGroup(user: User):
-    user.groups.add(Group.objects.filter(name='Editors').first())
+    user.groups.add(Group.objects.filter(name='Editor').first())

@@ -19,6 +19,12 @@
     <section class="s-pagecontent pagecontent pagecontent-login">
 
         <div class="subscribe-form login-form">
+            {% if messages %}
+                {% for message in messages %}
+                    {{message}}
+                {% endfor %}
+            {% endif %}
+            <br>
             {% include "global/partials/form.html" %}
             <p>Não tem conta? <a href="{% url "register" %}">Crie uma</a></p>
         </div>

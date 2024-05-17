@@ -1,0 +1,12 @@
+.box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.no-bold{
+    font-weight: normal;
+}
+.button_filter{
+    padding: 10px;
+    background-color: #61aeaf;
+}

@@ -57,7 +57,8 @@ INSTALLED_APPS = [
 
     'blog',
     'feedback',
-    'django_filters'
+    'django_filters',
+    'solicitacao'
 ]
 
 MIDDLEWARE = [

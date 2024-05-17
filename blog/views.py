@@ -10,7 +10,6 @@ from blog import groups
 from utils.pagination import make_pagination
 from utils.http_error import HttpPostError
 from django.contrib import messages
-from django.core.mail import send_mail
 
 # Create your views here.
 def index(request):
@@ -72,6 +71,7 @@ def register_view(request):
     context = {
         'form':form,
         'text_button':'Criar conta',
+        'head_title':'Criar conta',
         'form_action':reverse('register_create')
     }
 
@@ -111,6 +111,7 @@ def login_view(request):
     context = {
         'form':form,
         'text_button':'Entrar',
+        'head_title':'Login',
         'form_action':reverse('login_create')
     }
 
@@ -141,18 +142,6 @@ def login_create(request):
         messages.error(request, 'Username ou password inválidos')
 
     return redirect(reverse('login'))
-
-
-
-def acesso_view(request):
-    context = {}
-    return render(
-        request, 'blog/acesso.html', context=context
-    )
-
-
-def acesso_solicitacao(request):
-    HttpPostError(request)
 
 
 @login_required(login_url='login', redirect_field_name='next')

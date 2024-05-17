@@ -1,0 +1,12 @@
+.box{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.group{
+    color: #80D7D8;
+}
+.hide{
+    display: none;
+}
