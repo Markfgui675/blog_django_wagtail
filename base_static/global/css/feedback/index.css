@@ -35,3 +35,21 @@ a {
 .status{
     color: #80D7D8;
 }
+
+.filtro form{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+}
+.filtro form div{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+.filtro form .button_filter{
+    padding: 10px;
+    background-color: #61aeaf;
+}

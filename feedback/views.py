@@ -8,18 +8,20 @@ from feedback.models import StatusFeedback
 from feedback.forms.feedback_create import FeedbackcreateForm
 from feedback.forms.feedback_update import FeedbackUpdateForm
 from utils.pagination import make_pagination
+from feedback.filters import FeedbackFilter
 
 
 def index(request):
-    f = Feedback.objects.all().order_by('-id')
+    f = FeedbackFilter(request.GET, queryset=Feedback.objects.all())
     pagination = make_pagination(
         request=request,
-        object_list=f,
+        object_list=f.qs,
         per_page=10
     )
     context = {
+        'form':f.form,
         'f':pagination['page_obj'],
-        'pages':pagination['pagination_range']
+        'pages':pagination['pagination_range'],
     }
     return render(
         request, 'feedback/index.html', context=context

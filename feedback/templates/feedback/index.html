@@ -11,11 +11,11 @@
     {% include "wagtailadmin/shared/header.html" with title="Feedbacks" icon="comment" %}
 
     <div class="nice-padding">
-
+    
         <div class="filtro">
             <form method='GET'>
-                {{f.form.as_p}}
-                <input type="submit"/>
+                {{form}}
+                <input class="button_filter" type="submit" value="Pesquisar"/>
             </form>
         </div>
         
