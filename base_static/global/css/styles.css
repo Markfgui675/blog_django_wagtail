@@ -112,7 +112,7 @@
    */
 	--color-1-lightest             : hsla(35, 87%, 96%, 1);
 	--color-1-lighter              : hsla(35, 87%, 69%, 1);
-	--color-1-light                : hsla(35, 87%, 59%, 1);
+	--color-1-light                : #f1a63b;
 	--color-1-dark                 : hsla(35, 87%, 39%, 1);
 	--color-1-darker               : hsla(35, 87%, 29%, 1);
 	--color-1-darkest              : hsla(35, 87%, 10%, 1);
@@ -2815,6 +2815,18 @@ td:last-child {
 
 .list-items__item.u-remove-bottom {
 	margin-bottom: 0;
+}
+
+.back-home{
+	margin-left: 50px;
+	display: flex;
+	justify-content: start;
+	align-items: center;
+}
+.arrow-back{
+	margin-bottom: 0;
+	margin-right: 5px;
+	width: 32px;
 }
 
 .list-items__item-title,
