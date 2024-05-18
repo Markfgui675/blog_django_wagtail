@@ -25,6 +25,7 @@ def index(request):
     context = {
         'head_title':'Home',
         'page':page,
+        'home':True,
         'text_button':'Enviar',
         'pages':pagination['pagination_range'],
         'children':pagination['page_obj']

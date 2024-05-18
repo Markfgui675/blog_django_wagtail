@@ -20,12 +20,21 @@
                 {% if about %}
                     <li class="current"><a href="{% url "about" %}">About</a></li>
                     <li><a href="{% url "home-index" %}">Journal</a></li>
-                {% else %}
+                {% endif %}
+                {% if home %}
                     <li><a href="{% url "about" %}">About</a></li>
                     <li class="current"><a href="{% url "home-index" %}">Journal</a></li>
                 {% endif %}
-                {% if request.user.is_authenticated %}
-                    <li><a href="{% url "solicitacao" %}">Solicitar Nível de Acesso</a></li>
+                {% if not home and not about %}
+                    <li><a href="{% url "about" %}">About</a></li>
+                    <li><a href="{% url "home-index" %}">Journal</a></li>
+                {% endif %}
+                {% if request.user.is_authenticated%}
+                    {% if not home and not about %}
+                        <li class="current"><a href="{% url "solicitacao" %}">Solicitar Nível de Acesso</a></li>
+                    {% else %}
+                        <li><a href="{% url "solicitacao" %}">Solicitar Nível de Acesso</a></li>
+                    {% endif %}
                 {% endif %}
             </ul> <!-- s-header__menu-links -->
 

@@ -58,8 +58,9 @@ INSTALLED_APPS = [
     'blog',
     'feedback',
     'django_filters',
-    'solicitacao'
+    'solicitacao',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
