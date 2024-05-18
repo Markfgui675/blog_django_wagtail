@@ -7,12 +7,21 @@ from solicitacao.forms.create_solicitacao import SolicitacaoCreateForm
 from solicitacao.forms.update_solicitacao import SolicitacaoUpdateForm
 from solicitacao.models import Solicitacao, StatusSolicitacao
 from utils.http_error import HttpPostError
+from solicitacao.filters import SolicitacaoFilter
+from utils.pagination import make_pagination
 
 
 def index(request):
-    s = Solicitacao.objects.all().order_by('-id')
+    s = SolicitacaoFilter(request.GET, queryset=Solicitacao.objects.all().order_by('-id'))
+    pagination = make_pagination(
+        request=request,
+        object_list=s.qs,
+        per_page=10
+    )
     context = {
-        's':s
+        's':pagination['page_obj'],
+        'pages':pagination['pagination_range'],
+        'form':s.form
     }
     return render(
         request, 'solicitacao/index.html', context=context

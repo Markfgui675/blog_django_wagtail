@@ -13,11 +13,23 @@
     <div class="nice-padding">
 
         {% if request.user.is_staff %}
+
+            <div class="filtro">
+                <form method='GET'>
+                    {{form}}
+                    <input class="button_filter" type="submit" value="Pesquisar"/>
+                </form>
+            </div>
+
             {% for solicitacao in s %}
 
                 <div class="box">
                     <a href="{% url "solicitacao_page" solicitacao.id%}">
-                        <h2>{{solicitacao.user}} - <span class="group">{{solicitacao.group}}</span></h2>
+                        <h2>
+                            {{solicitacao.user}} - 
+                            <span class="group">{{solicitacao.group}}</span> - 
+                            <span class="group">{{solicitacao.status}}</span>
+                        </h2>
                     </a>
 
                     <a href="#"><h2>{{solicitacao.data}}</h2></a>
