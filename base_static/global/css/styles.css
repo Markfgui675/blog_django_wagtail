@@ -111,7 +111,7 @@
   /* theme color variations
    */
 	--color-1-lightest             : hsla(35, 87%, 96%, 1);
-	--color-1-lighter              : hsla(35, 87%, 69%, 1);
+	--color-1-lighter              : #f5bb6b;
 	--color-1-light                : #f1a63b;
 	--color-1-dark                 : hsla(35, 87%, 39%, 1);
 	--color-1-darker               : hsla(35, 87%, 29%, 1);
@@ -509,6 +509,29 @@ table {
 	flex-flow: row wrap;
 	width    : min(92%, var(--width-grid-max));
 	margin   : 0 auto;
+}
+
+.search-box{
+	width: 100%;
+}
+.search-box form .search-container{
+	display: flex;
+	gap: 10px;
+
+}
+
+.resultados{
+	width: 100%;
+	display: flex;
+	justify-content: start;
+	align-items: center;
+}
+.resultados .q{
+	color: var(--color-1-light);
+}
+.resultados h2{
+	margin-top: 0;
+	margin-bottom: 40px;
 }
 
 .row .row {

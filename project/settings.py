@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'feedback',
     'django_filters',
     'solicitacao',
+    'watson'
 ]
 
 
@@ -72,6 +73,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
+    'watson.middleware.SearchContextMiddleware'
 ]
 
 ROOT_URLCONF = 'project.urls'

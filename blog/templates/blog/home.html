@@ -19,19 +19,39 @@
             <section class="s-pagecontent pagecontent">
 
                 <div class="row">
-                    <div class="column xl-12 grid-block">
 
-                        <!-- <div class="grid-full">         -->
-                        <div class="grid-full grid-list-items">
+                    <div class="search-box">
+                        <form action="{% url 'search' %}">
+                            <div class="search-container">
+                                <input placeholder="Pesquisar" type="text" class="search-input" name="q" value="{{request.GET.q}}">
+                                <button class="search-button">Pesquisar</button>
+                            </div>
+                        </form>
+                    </div>
 
-                            {% for p in children %}
-                                {% include "blog/partials/blog_card.html" %}
-                            {% endfor %}
+                    {% if search and resultado %}
+                        <div class="resultados">
+                            <h2>Resultados para <span class="q">"{{pesquisa}}"</span></h2>
+                        </div>
+                    {% endif %}
 
-                        </div> <!-- grid-list-items -->
-                        <!-- </div>     -->
+                    {% if resultado %}
+                        <div class="column xl-12 grid-block">
 
-                    </div> <!-- end grid-block-->
+                            <!-- <div class="grid-full">         -->
+                            <div class="grid-full grid-list-items">
+
+                                {% for p in children %}
+                                    {% include "blog/partials/blog_card.html" %}
+                                {% endfor %}
+
+                            </div> <!-- grid-list-items -->
+                            <!-- </div>     -->
+
+                        </div> <!-- end grid-block-->
+                    {% else %}
+                        <h2>Nunhum resultado encontrado para a pesquisa</h2>
+                    {% endif %}
                 </div> <!-- end row -->
 
                 {% include "global/partials/pagination.html" %}

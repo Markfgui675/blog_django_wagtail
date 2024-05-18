@@ -1,10 +1,13 @@
-from django.urls import include, path
+from django.urls import path
 from blog import views as b
 from feedback import views as f
 from solicitacao import views as s
 
 urlpatterns = [
     path('', b.index, name='home-index'),
+    path('search/', b.search, name='search'),
+    path('search/category/<category>/', b.search_category, name='search-category'),
+    path('search/user/<user>/', b.search_user, name='search-user'),
     path('about/', b.about, name='about'),
     path('solicitacao/', s.acesso_view, name='solicitacao'),
     path('solicitacao/create/', s.acesso_solicitacao, name='solicitacao_create'),
