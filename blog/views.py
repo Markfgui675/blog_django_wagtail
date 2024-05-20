@@ -64,12 +64,15 @@ def search(request):
     blogs: List[Blog] = []
     pesquisa = request.GET.get('q')
 
-    if len(pesquisa.strip()) <= 0:
-        blogs = Blog.objects.all()
+    if pesquisa != None:
+        if len(pesquisa.strip()) <= 0:
+            blogs = Blog.objects.all()
+        else:
+            resultados = watson_search.search(pesquisa)
+            for r in resultados:
+                blogs.append(Blog.objects.filter(title=r.title).first())
     else:
-        resultados = watson_search.search(pesquisa)
-        for r in resultados:
-            blogs.append(Blog.objects.filter(title=r.title).first())
+        blogs = Blog.objects.all()
     
     resultado = True if len(blogs) > 0 else False
 
@@ -82,7 +85,7 @@ def search(request):
     )
     context = {
         'search':True,
-        'pesquisa':pesquisa,
+        'pesquisa':pesquisa if pesquisa != None else '',
         'head_title':f"Resultados para - {pesquisa}",
         'home':True,
         'resultado':resultado,
