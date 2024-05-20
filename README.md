@@ -17,41 +17,15 @@ Link de acesso: https://markfgui.pythonanywhere.com/
 
 Neste webapp é é possível ler artigos diversos, criados pelos próprios usuários do app. É possível pesquisar por autores, usuários, artigos, e ainda pode-se salvar os artigos de interesse do usuário. Nas seção de pesquisa, além de poder pesquisar os termos anteriores, também é possível filtrar a pesquisa através de tópicos (Esportes, Tecnologia, Ciência, Estilo de Vida, Política, etc.).
 
-# Status do Projeto
-
-<h4 align="center"> 
-    :construction:  Projeto em construção  :construction:
-</h4>
-
 # Funcionalidades do Projeto
 
 - `Criar artigos`: O usuário conseguirá criar os seus artigos e publicá-los no app.
 - `Salvar artigos`: O usuário conseguirá salvar os artigos do seu interesse.
-- `Notificações`: O usuário receberá notificações do app, quando, por exemplo, novos artigos forem publicados.
-- `Seguir e ser seguido`: O usuário poderá seguir e ser seguido por outros usuários.
 - `Pesquisa com filtros`: Será possível buscar por usuários, topicos e artigos.
 
 # Tecnologias e Técnicas Utilizadas
 
-- `Flutter 3.13`
-- `Dart 3.1`
-- `Padrão de Projeto MVVM`
+- `Python 3.10`
+- `Django 5.0.6`
+- `Padrão de Projeto MVT`
 - `Programação Orientada a Objetos`
-- `MOBX para gerenciamento de estado`
-
-
-# Funcionalidades do Projeto
-
-- `Criar artigos`: O usuário conseguirá criar os seus artigos e publicá-los no app.
-- `Salvar artigos`: O usuário conseguirá salvar os artigos do seu interesse.
-- `Notificações`: O usuário receberá notificações do app, quando, por exemplo, novos artigos forem publicados.
-- `Seguir e ser seguido`: O usuário poderá seguir e ser seguido por outros usuários.
-- `Pesquisa com filtros`: Será possível buscar por usuários, topicos e artigos.
-
-# Tecnologias e Técnicas Utilizadas
-
-- `Flutter 3.13`
-- `Dart 3.1`
-- `Padrão de Projeto MVVM`
-- `Programação Orientada a Objetos`
-- `MOBX para gerenciamento de estado`
