@@ -7,10 +7,8 @@ Link de acesso: https://markfgui.pythonanywhere.com/
 
 <p align="center">
 
-
-<i class="devicon-django-plain">
-            <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
-          </i>   
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain-wordmark.svg" width=90/>
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" width=80/>
 <img alt="Static Badge" src="https://img.shields.io/badge/status-Conclu%C3%ADdo-green">
 <img alt="Static Badge" src="https://img.shields.io/badge/version-1.0.0-red">     
 </p>
