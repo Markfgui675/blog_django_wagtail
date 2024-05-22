@@ -106,6 +106,7 @@ def search_favoritos(request):
     resultado = True if len(favoritos) > 0 else False
 
     context = {
+        'pesquisa':pesquisa,
         'search':True,
         'head_title':'Favoritos',
         'resultado':resultado,
