@@ -31,7 +31,6 @@ def index(request):
         'page':page,
         'home':True,
         'resultado':resultado,
-        'text_button':'Enviar',
         'pages':pagination['pagination_range'],
         'children':pagination['page_obj']
     }
@@ -58,6 +57,75 @@ def blog(request, slug):
         request, 'blog/blog.html', context=context
     )
 
+@login_required(login_url='login', redirect_field_name='next')
+def favoritos(request):
+    favoritos = request.user.favoritos.all().order_by('-id')
+    pagination = make_pagination(
+        request=request,
+        object_list=favoritos,
+        per_page=12
+    )
+
+    resultado = True if len(favoritos) > 0 else False
+
+    context = {
+        'head_title':'Favoritos',
+        'resultado':resultado,
+        'no_resultado_message':'Você não salvou nenhum blog ainda',
+        'pages':pagination['pagination_range'],
+        'children':pagination['page_obj']
+    }
+
+    return render(
+        request, 'blog/favoritos.html', context=context
+    )
+
+@login_required(login_url='login', redirect_field_name='next')
+def search_favoritos(request):
+
+    blogs: List[Blog] = []
+    pesquisa = request.GET.get('q')
+
+    if pesquisa != None:
+        if len(pesquisa.strip()) <= 0:
+            blogs = request.user.favoritos.all()
+        else:
+            resultados = watson_search.filter(request.user.favoritos.all(), pesquisa)
+            for r in resultados:
+                blogs.append(Blog.objects.filter(id=r.id).first())
+    else:
+        blogs = request.user.favoritos.all()
+
+    favoritos = request.user.favoritos.all()
+    pagination = make_pagination(
+        request=request,
+        object_list=favoritos,
+        per_page=12
+    )
+
+    resultado = True if len(favoritos) > 0 else False
+
+    context = {
+        'search':True,
+        'head_title':'Favoritos',
+        'resultado':resultado,
+        'no_resultado_message':'Você não salvou nenhum blog ainda',
+        'pages':pagination['pagination_range'],
+        'children':pagination['page_obj']
+    }
+
+    return render(
+        request, 'blog/favoritos.html', context=context
+    )
+
+
+@login_required(login_url='login', redirect_field_name='next')
+def create_favoritos(request, id):
+    b: Blog = Blog.objects.filter(id=id).first()
+    request.user.favoritos.add(Blog.objects.filter(id=id).first())
+    messages.success(request, 'Página favoritada com sucesso')
+    return redirect(reverse('blog-page', args=(b.slug,)))
+
 
 def search(request):
 
@@ -70,13 +138,11 @@ def search(request):
         else:
             resultados = watson_search.search(pesquisa)
             for r in resultados:
-                blogs.append(Blog.objects.filter(title=r.title).first())
+                blogs.append(Blog.objects.filter(id=r.id).first())
     else:
         blogs = Blog.objects.all()
     
     resultado = True if len(blogs) > 0 else False
-
-    print(blogs)
 
     pagination = make_pagination(
         request=request,

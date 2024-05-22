@@ -32,8 +32,10 @@
                 {% if request.user.is_authenticated%}
                     {% if not home and not about %}
                         <li class="current"><a href="{% url "solicitacao" %}">Solicitar Nível de Acesso</a></li>
+                        <li><a href="{% url "favoritos" %}">Favoritos</a></li>
                     {% else %}
                         <li><a href="{% url "solicitacao" %}">Solicitar Nível de Acesso</a></li>
+                        <li><a href="{% url "favoritos" %}">Favoritos</a></li>
                     {% endif %}
                 {% endif %}
             </ul> <!-- s-header__menu-links -->

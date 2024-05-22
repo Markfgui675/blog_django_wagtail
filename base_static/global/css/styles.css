@@ -104,7 +104,7 @@
    * color-2(#343D35)
    * color-3(#FEF5E4)
    */
-	--color-1: hsla(35, 87%, 49%, 1);
+	--color-1: #ea8f10;
 	--color-2: hsla(127, 8%, 22%, 1);
 	--color-3: hsla(39, 93%, 95%, 1);
 
@@ -2864,6 +2864,15 @@ td:last-child {
 	transition: all 0.2s;
 }
 
+.message-favoritar{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.message-favoritar p{
+	color: green;
+}
+
 .list-items__item-title,
 .list-items__item-small-title {
 	color     : var(--color-text-dark);
@@ -4573,6 +4582,17 @@ td:last-child {
 	font-weight    : 300;
 	color          : rgba(255, 255, 255, 0.7);
 	margin-top     : var(--vspace-1);
+}
+.update__meta{
+	margin-top: 0;
+}
+.update__meta p{
+	margin: 0;
+}
+
+.favoritar:hover{
+	color: var(--color-1);
+	cursor: pointer;
 }
 
 .entry__meta a {

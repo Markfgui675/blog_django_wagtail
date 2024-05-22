@@ -9,8 +9,7 @@
                 <div class="row">
                     <div class="column xl-12">
                         <h1 class="page-title">
-                            <span class="page-title__small-type text-pretitle">Blog</span>
-                            Blog Wagtail
+                            <span class="page-title__small-type text-pretitle">Blogs favoritos</span>
                         </h1>
                     </div>
                 </div>
@@ -21,7 +20,7 @@
                 <div class="row">
 
                     <div class="search-box">
-                        <form action="{% url 'search' %}">
+                        <form action="{% url 'search-favoritos' %}">
                             <div class="search-container">
                                 <input placeholder="Pesquisar" type="text" class="search-input" name="q" value="{{request.GET.q}}">
                                 <button class="search-button">Pesquisar</button>

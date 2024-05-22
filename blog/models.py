@@ -25,6 +25,7 @@ class Blog(Page):
     body = RichTextField(blank=False)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
+    favoritos = models.ManyToManyField(User, null=True, related_name='favoritos')
 
     content_panels = [
         FieldPanel('date'),
