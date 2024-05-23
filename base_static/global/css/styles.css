@@ -2947,6 +2947,11 @@ td:last-child {
 .blog-card__header {
 	margin-bottom: var(--vspace-0_75);
 }
+.blog-card__header-favorito{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
 
 .blog-card__cat-links {
 	font-size: var(--text-sm);

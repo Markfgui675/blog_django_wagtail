@@ -19,6 +19,14 @@
 
                 <div class="row">
 
+                    {% if messages %}
+                        <div class="box-back message-favoritar">
+                            {% for message in messages %}
+                                <p>{{message}}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
                     <div class="search-box">
                         <form action="{% url 'search-favoritos' %}">
                             <div class="search-container">
@@ -41,7 +49,7 @@
                             <div class="grid-full grid-list-items">
 
                                 {% for p in children %}
-                                    {% include "blog/partials/blog_card.html" %}
+                                    {% include "blog/partials/blog_card_favorito.html" %}
                                 {% endfor %}
 
                             </div> <!-- grid-list-items -->

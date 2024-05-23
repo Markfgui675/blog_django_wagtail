@@ -18,15 +18,15 @@
 
             <ul class="s-header__menu-links">
                 {% if about %}
-                    <li class="current"><a href="{% url "about" %}">About</a></li>
+                    <li class="current"><a href="https://markfgui675.github.io/SitePortif-lio/" target="_blank">About</a></li>
                     <li><a href="{% url "home-index" %}">Journal</a></li>
                 {% endif %}
                 {% if home %}
-                    <li><a href="{% url "about" %}">About</a></li>
+                    <li><a href="https://markfgui675.github.io/SitePortif-lio/" target="_blank">About</a></li>
                     <li class="current"><a href="{% url "home-index" %}">Journal</a></li>
                 {% endif %}
                 {% if not home and not about %}
-                    <li><a href="{% url "about" %}">About</a></li>
+                    <li><a href="https://markfgui675.github.io/SitePortif-lio/" target="_blank">About</a></li>
                     <li><a href="{% url "home-index" %}">Journal</a></li>
                 {% endif %}
                 {% if request.user.is_authenticated%}

@@ -123,9 +123,15 @@ def search_favoritos(request):
 @login_required(login_url='login', redirect_field_name='next')
 def create_favoritos(request, id):
     b: Blog = Blog.objects.filter(id=id).first()
-    request.user.favoritos.add(Blog.objects.filter(id=id).first())
+    request.user.favoritos.add(b)
     messages.success(request, 'Página favoritada com sucesso')
     return redirect(reverse('blog-page', args=(b.slug,)))
+
+@login_required(login_url='login', redirect_field_name='next')
+def delete_favoritos(request, id):
+    request.user.favoritos.remove(Blog.objects.filter(id=id).first())
+    messages.success(request, 'Página removida com sucesso')
+    return redirect(reverse('favoritos'))
 
 
 def search(request):
@@ -207,17 +213,6 @@ def search_user(request, user: User):
         request, 'blog/home.html', context=context
     )
 
-
-def about(request):
-
-    context = {
-        'head_title':'About',
-        'about':True
-    }
-
-    return render(
-        request, 'blog/about.html', context=context
-    )
 
 
 def register_view(request):
