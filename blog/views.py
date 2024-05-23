@@ -92,14 +92,14 @@ def search_favoritos(request):
         else:
             resultados = watson_search.filter(request.user.favoritos.all(), pesquisa)
             for r in resultados:
-                blogs.append(Blog.objects.filter(id=r.id).first())
+                blogs.append(Blog.objects.filter(title=r.title).first())
     else:
         blogs = request.user.favoritos.all()
 
     favoritos = request.user.favoritos.all()
     pagination = make_pagination(
         request=request,
-        object_list=favoritos,
+        object_list=blogs,
         per_page=12
     )
 
@@ -139,7 +139,7 @@ def search(request):
         else:
             resultados = watson_search.search(pesquisa)
             for r in resultados:
-                blogs.append(Blog.objects.filter(id=r.id).first())
+                blogs.append(Blog.objects.filter(title=r.title).first())
     else:
         blogs = Blog.objects.all()
     
