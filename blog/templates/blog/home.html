@@ -23,6 +23,7 @@
                     <div class="search-box">
                         <form action="{% url 'search' %}">
                             <div class="search-container">
+                                {% csrf_token %}
                                 <input placeholder="Pesquisar" type="text" class="search-input" name="q" value="{{request.GET.q}}">
                                 <button class="search-button">Pesquisar</button>
                             </div>
